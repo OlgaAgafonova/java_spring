@@ -1,0 +1,7 @@
+group 'by.agafonova.olga'
+version '0.0.1-SNAPSHOT'
+
+dependencies {
+    compile("org.springframework:spring-jdbc:${springVersion}")
+    compile("com.h2database:h2:${h2Version}")
+}

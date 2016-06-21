@@ -27,3 +27,21 @@
 ### Явное связывание
 - ``@Bean`` - говорит Spring, что метод возвратит объект, который надо зарегистрировать в контексте приложения Spring.
 
+### Смешанное конфигурирование связывания (анотации + XML)
+- ``@Import(CDPlayerConfig.class)`` - добавление конфигураций из класса CDPlayerConfig.class к тому классу, у которого есть такая аннотация.
+- ``@ImportResource("classpath:cd-config.xml")`` - добавление конфигураций из XML файла к тому классу, у которого есть такая аннотация.
+- ``<import resource="cd-config.xml" />`` - добавление конфигураций из другого XML файла к тому файлу, у которого есть такой тег.
+- ``<bean class="soundsystem.CDConfig" />`` - добавление конфигураций из JAVA класса к тому файлу, у которого есть такой тег.
+
+
+# Интересное
+- Создание БД со схемой ``schema.sql`` и данными ``test-data.sql``, например, для тестирования:
+>```
+>@Bean(destroyMethod="shutdown")
+>public DataSource dataSource() {
+>return new EmbeddedDatabaseBuilder()
+>.addScript("classpath:schema.sql")
+>.addScript("classpath:test-data.sql")
+>.build();
+>}
+>```
