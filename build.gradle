@@ -1,14 +1,30 @@
 group 'by.agafonova.olga'
 version '1.0-SNAPSHOT'
 
-apply plugin: 'java'
+allprojects {
+    apply plugin: 'java'
 
-sourceCompatibility = 1.8
+    sourceCompatibility = 1.8
 
-repositories {
-    mavenCentral()
+    repositories {
+        mavenLocal()
+        mavenCentral()
+    }
+
+    dependencies {
+        compile("org.springframework:spring-context:${springVersion}")
+        compile("org.aspectj:aspectjweaver:${aspectJVersion}")
+        compile("log4j:log4j:${log4jVersion}")
+
+        testCompile("junit:junit:${junitVersion}")
+        testCompile("org.mockito:mockito-core:${mockitoVersion}")
+        testCompile("org.springframework:spring-test:${springVersion}")
+        testCompile "com.github.stefanbirkner:system-rules:${systemRulesVersion}"
+    }
+
+    task wrapper(type: Wrapper) {
+        gradleVersion = '1.11'
+    }
 }
 
-dependencies {
-    testCompile group: 'junit', name: 'junit', version: '4.11'
-}
+
