@@ -1,4 +1,5 @@
 group 'by.agafonova.olga'
+apply plugin: 'java'
 
 jar {
     baseName = 'knight'

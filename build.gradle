@@ -2,7 +2,6 @@ group 'by.agafonova.olga'
 version '0.0.1-SNAPSHOT'
 
 allprojects {
-    apply plugin: 'java'
 
     sourceCompatibility = 1.8
 
