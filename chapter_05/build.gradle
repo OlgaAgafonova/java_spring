@@ -9,13 +9,15 @@ dependencies {
     compile "org.hibernate:hibernate-validator:$hibernateValidatorVersion"
     compile "org.apache.commons:commons-lang3:$commonsLangVersion"
 
-    compile "javax.servlet:jstl:$jstlVersion"
+    compile group: 'jstl', name: 'jstl', version: '1.2'
+
     providedCompile "javax.servlet:javax.servlet-api:$servletApiVersion"
     providedCompile "javax.servlet.jsp:jsp-api:$jspApiVersion"
     providedCompile "javax.el:javax.el-api:$jspElVersion"
 
     testCompile "org.hamcrest:hamcrest-library:$hamcrestVersion"
 }
+
 
 repositories {
     maven { url 'http://maven.springframework.org/release' }

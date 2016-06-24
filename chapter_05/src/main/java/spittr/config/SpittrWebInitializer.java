@@ -3,11 +3,11 @@ package spittr.config;
 
 import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;
 
-class SpittrWebInitializer extends AbstractAnnotationConfigDispatcherServletInitializer {
+public  class SpittrWebInitializer extends AbstractAnnotationConfigDispatcherServletInitializer {
 
     @Override
     protected String[] getServletMappings() {
-        return new String[]{"/"};
+        return new String[]{"/", "/home"};
     }
 
     @Override

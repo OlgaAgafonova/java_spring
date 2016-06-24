@@ -8,8 +8,6 @@ import spittr.Spittle;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.time.LocalDateTime;
-import java.time.ZoneId;
 import java.util.List;
 
 @Repository
@@ -22,6 +20,7 @@ public class JdbcSpittleRepository implements SpittleRepository {
         this.jdbc = jdbc;
     }
 
+    @Override
     public List<Spittle> findRecentSpittles() {
         return jdbc.query(
                 "select id, message, created_at, latitude, longitude" +
@@ -30,6 +29,7 @@ public class JdbcSpittleRepository implements SpittleRepository {
                 new SpittleRowMapper());
     }
 
+    @Override
     public List<Spittle> findSpittles(long max, int count) {
         return jdbc.query(
                 "select id, message, created_at, latitude, longitude" +
@@ -39,6 +39,7 @@ public class JdbcSpittleRepository implements SpittleRepository {
                 new SpittleRowMapper(), max);
     }
 
+    @Override
     public Spittle findOne(long id) {
         return jdbc.queryForObject(
                 "select id, message, created_at, latitude, longitude" +
@@ -47,22 +48,24 @@ public class JdbcSpittleRepository implements SpittleRepository {
                 new SpittleRowMapper(), id);
     }
 
+    @Override
     public void save(Spittle spittle) {
         jdbc.update(
                 "insert into Spittle (message, created_at, latitude, longitude)" +
                         " values (?, ?, ?, ?)",
                 spittle.getMessage(),
-                spittle.getLocalDateTime(),
+                spittle.getDate(),
                 spittle.getLatitude(),
                 spittle.getLongitude());
     }
 
     private static class SpittleRowMapper implements RowMapper<Spittle> {
+        @Override
         public Spittle mapRow(ResultSet rs, int rowNum) throws SQLException {
             return new Spittle(
                     rs.getLong("id"),
                     rs.getString("message"),
-                    LocalDateTime.ofInstant(rs.getDate("created_at").toInstant(), ZoneId.systemDefault()),
+                    rs.getDate("created_at"),
                     rs.getDouble("longitude"),
                     rs.getDouble("latitude"));
         }

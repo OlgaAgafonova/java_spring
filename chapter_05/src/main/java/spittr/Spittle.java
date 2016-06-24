@@ -4,24 +4,24 @@ package spittr;
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 
-import java.time.LocalDateTime;
+import java.util.Date;
 
 public class Spittle {
 
     private final Long id;
     private final String message;
-    private final LocalDateTime localDateTime;
+    private final Date date;
     private Double latitude; //широта
     private Double longitude; //долгота
 
-    public Spittle(String message, LocalDateTime time) {
-        this(null, message, time, null, null);
+    public Spittle(String message, Date date) {
+        this(null, message, date, null, null);
     }
 
-    public Spittle(Long id, String message, LocalDateTime time, Double longitude, Double latitude) {
+    public Spittle(Long id, String message, Date date, Double longitude, Double latitude) {
         this.id = id;
         this.message = message;
-        this.localDateTime = time;
+        this.date = date;
         this.longitude = longitude;
         this.latitude = latitude;
     }
@@ -34,8 +34,8 @@ public class Spittle {
         return message;
     }
 
-    public LocalDateTime getLocalDateTime() {
-        return localDateTime;
+    public Date getDate() {
+        return date;
     }
 
     public Double getLatitude() {

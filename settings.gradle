@@ -3,4 +3,5 @@ include 'chapter_01'
 include 'chapter_02'
 include 'chapter_03'
 include 'chapter_05'
+include 'chapter_06'
 

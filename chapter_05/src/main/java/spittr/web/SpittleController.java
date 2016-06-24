@@ -10,11 +10,11 @@ import org.springframework.web.bind.annotation.RequestParam;
 import spittr.Spittle;
 import spittr.data.SpittleRepository;
 
-import java.time.LocalDateTime;
+import java.util.Date;
 import java.util.List;
 
 @Controller
-@RequestMapping("/spitters")
+@RequestMapping("/spittles")
 public class SpittleController {
 
     private SpittleRepository spittleRepository;
@@ -45,7 +45,7 @@ public class SpittleController {
 
     @RequestMapping(method=RequestMethod.POST)
     public String saveSpittle(SpittleForm form, Model model) throws Exception {
-        spittleRepository.save(new Spittle(null, form.getMessage(), LocalDateTime.now(),
+        spittleRepository.save(new Spittle(null, form.getMessage(), new Date(),
                 form.getLongitude(), form.getLatitude()));
         return "redirect:/spittles";
     }
