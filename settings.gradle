@@ -4,4 +4,8 @@ include 'chapter_02'
 include 'chapter_03'
 include 'chapter_05'
 include 'chapter_06'
+include 'chapter_06_tiles'
+include 'chapter_06_thymeleaf'
+include 'chapter_07'
+include 'chapter_09'
 

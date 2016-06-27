@@ -1,16 +1,13 @@
-package spittr;
+package spittr.web;
 
-
-import com.sun.istack.internal.NotNull;
-import org.apache.commons.lang3.builder.EqualsBuilder;
-import org.apache.commons.lang3.builder.HashCodeBuilder;
 import org.hibernate.validator.constraints.Email;
+import org.springframework.web.multipart.MultipartFile;
+import spittr.Spitter;
 
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
-
-public class Spitter {
-    private Long id;
+public class SpitterForm {
 
     @NotNull
     @Size(min = 5, max = 16, message = "{username.size}")
@@ -32,21 +29,7 @@ public class Spitter {
     @Email(message = "{email.valid}")
     private String email;
 
-    public Spitter() {
-    }
-
-    public Spitter(String username, String password, String firstName, String lastName, String email) {
-        this(null, username, password, firstName, lastName, email);
-    }
-
-    public Spitter(Long id, String username, String password, String firstName, String lastName, String email) {
-        this.id = id;
-        this.username = username;
-        this.password = password;
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.email = email;
-    }
+    private MultipartFile profilePicture;
 
     public String getUsername() {
         return username;
@@ -62,14 +45,6 @@ public class Spitter {
 
     public void setPassword(String password) {
         this.password = password;
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
     }
 
     public String getFirstName() {
@@ -96,14 +71,16 @@ public class Spitter {
         this.email = email;
     }
 
-    @Override
-    public boolean equals(Object that) {
-        return EqualsBuilder.reflectionEquals(this, that, "firstName", "lastName", "username", "password", "email");
+    public MultipartFile getProfilePicture() {
+        return profilePicture;
     }
 
-    @Override
-    public int hashCode() {
-        return HashCodeBuilder.reflectionHashCode(this, "firstName", "lastName", "username", "password", "email");
+    public void setProfilePicture(MultipartFile profilePicture) {
+        this.profilePicture = profilePicture;
+    }
+
+    public Spitter toSpitter() {
+        return new Spitter(username, password, firstName, lastName, email);
     }
 
 }
