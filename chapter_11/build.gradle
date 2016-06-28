@@ -1,0 +1,14 @@
+group 'by.agafonova.olga'
+version '0.0.1-SNAPSHOT'
+
+apply plugin: 'war'
+
+
+dependencies {
+    compile "org.springframework:spring-orm:$springVersion"
+    compile "org.hibernate:hibernate-core:$hibernateVersion"
+    compile "org.springframework.data:spring-data-jpa:$springDataJpaVersion"
+    compile "org.hibernate:hibernate-entitymanager:$hibernateEntityManagerVersion"
+    compile "com.h2database:h2:$h2Version"
+    compile "javax.inject:javax.inject:1"
+}
