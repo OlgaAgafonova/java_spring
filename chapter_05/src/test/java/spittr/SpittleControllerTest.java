@@ -7,8 +7,8 @@ import org.springframework.web.servlet.view.InternalResourceView;
 import spittr.data.SpittleRepository;
 import spittr.web.SpittleController;
 
-import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import static org.hamcrest.Matchers.hasItems;
@@ -63,7 +63,7 @@ public class SpittleControllerTest {
 
     @Test
     public void testSpittle() throws Exception {
-        Spittle expectedSpittle = new Spittle("Hello", LocalDateTime.now());
+        Spittle expectedSpittle = new Spittle("Hello", new Date());
         SpittleRepository mockRepository = mock(SpittleRepository.class);
         when(mockRepository.findOne(12345)).thenReturn(expectedSpittle);
 
@@ -80,7 +80,7 @@ public class SpittleControllerTest {
     private List<Spittle> createSpittleList(int count) {
         List<Spittle> spittles = new ArrayList<>();
         for (int i=0; i < count; i++) {
-            spittles.add(new Spittle("Spittle " + i, LocalDateTime.now()));
+            spittles.add(new Spittle("Spittle " + i, new Date()));
         }
         return spittles;
     }
